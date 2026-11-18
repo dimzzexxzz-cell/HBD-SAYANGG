@@ -1,31 +1,70 @@
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="vidhbd.css">
-        <title>HBD SAYANGGGG</title>
-    </head>
-    <body>
-        <div class="container">
-            <div class="box"
-            <video class="video-player" controls ></video>
-                  <div class="button-card"
-                  <button ="https://youtu.be/mhwyDRVqCWk?si=LyuAFMUZjcloDnoe">
-                  Video 1
-                  </button>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pemutar Video Satu Per Satu</title>
+  <link rel="stylesheet" href="vidhbd.css" />
+</head>
+<body>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 30px;
+    }
+    .tombol-menu {
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 0 5px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      background-color: #d3207f;
+    }
+    button.aktif {
+      background-color: #740760;
+      color: rgb(253, 252, 255);
+    }
+    video {
+      width: 640px;
+      max-width: 90%;
+      border-radius: 10px;
+      background: #000;
+    }
+  </style>
 
-                   <button data-urL="https://youtu.be/uAaN2A1THvI?si=wxdePZyc-Iyi_YVq">
-                  Video 2
-                  </button>
+  <!-- Tombol untuk memilih video -->
+  <div class="tombol-menu">
+    <button id="btn1" class="aktif" onclick="gantiVideo('hbdayang.mp4', 'btn1')">Video 1</button>
+    <button id="btn2" onclick="gantiVideo('hbdkucing.mp4', 'btn2')">Video 2</button>
+    <button id="btn3" onclick="gantiVideo('hbdcantik.mp4', 'btn3')">Video 3</button>
+  </div>
 
-                   <button data-urL="https://youtu.be/oSe42QYOqmY?si=-i3H_-51dPvsDewu">
-                  Video 3
-                  </button>
+  <!-- Hanya ada 1 layar pemutar video -->
+  <video id="layarVideo" controls autoplay
+    <source src="hbdayang.mp4" type="video/mp4">
+  </video>
+  <script> 
+function gantiVideo(namaFile, idTombol) {
+    const pemutar = document.getElementById('layarVideo');
 
-                  </div>
-             </div>
-        </div>
+    pemutar.pause();
+    pemutar.src = namaFile;
+    pemutar.load();
 
-<script src="vidhbd.js"></script>
-    </body>
+    pemutar.play().catch(error => {
+        console.error("Video gagal diputar:", error);
+    });
+
+    document.querySelectorAll('button').forEach(btn => {
+        btn.classList.remove('aktif');
+    });
+
+    document.getElementById(idTombol).classList.add('aktif')} </script>
+
+
+</body>
 </html>
